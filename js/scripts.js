@@ -7,6 +7,8 @@ let cost = 500;
 let totalPrice = 0;
 let pay = document.querySelector(".pay");
 
+let hall = document.querySelectorAll("#placed");
+
 
 schemeSvg.addEventListener("click", (event) => {
   if (!event.target.classList.contains("booked")) {
@@ -21,12 +23,32 @@ schemeSvg.addEventListener("click", (event) => {
 
 pay.addEventListener("click", () => {
   let active = document.querySelectorAll('path.active');
-
+  let i = 0;
   active.forEach((item) => {
     item.classList.remove("active");
     item.classList.add("booked");
+    i++;
+    console.log(i);
+
+    let name = i;
+    localStorage.setItem('testName', name);
+    
+    let neme = localStorage.getItem('testName');
+    console.log(neme);
   });
 });
+
+
+
+// hall.forEach((index) => {
+//   i=0;
+//   if (index.classList.contains('booked')) {
+//     i++;
+//     console.log(i);
+//   };
+// });
+
+
 
 
 menuButton.addEventListener("click", () => {

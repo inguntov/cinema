@@ -482,3 +482,17 @@ footer {
     width: 180px;
   }
 }
+
+.container-admin {
+  width: 100%;
+  min-height: 740px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(2, 3, 7, 0.4);
+}
+
+.admin {
+  text-align: center;
+}
