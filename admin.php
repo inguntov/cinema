@@ -1,7 +1,11 @@
 <?php
 require_once "db.php";
 $stmt = $pdo->query("select * from booking");
-$messages = $stmt->fetchAll();
+$booking = $stmt->fetchAll();
+
+
+$stmt = $pdo->query("select * from newsletter");
+$newsletter = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -19,28 +23,45 @@ $messages = $stmt->fetchAll();
 <body>
   <div class="container-admin">
     <div class="admin">
-    <h2>Сообщения</h2>
-    <table border="1" style="border: 1px solid red;">
-      <tr>
-        <th>#</th>
-        <th>Имя</th>
-        <th>Фамилия</th>
-        <th>Телефон</th>
-        <th>Дата и время</th>
-      </tr>
-      <?php foreach ($messages as $key => $message) : ?>
+      <h2>Сообщения</h2>
+      <table border="1" style="border: 1px solid red;">
         <tr>
-          <td><?= $key + 1 ?></td>
-          <td><?= htmlspecialchars($message['name']) ?></td>
-          <td><?= htmlspecialchars($message['last_name']) ?></td>
-          <td><?= htmlspecialchars($message['tel']) ?></td>
-          <td><?= $message['created_at'] ?></td>
+          <th>#</th>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Телефон</th>
+          <th>Дата и время</th>
         </tr>
-      <?php endforeach; ?>
-    </table>
-    <br>
-    <p class="count">0</p>
-</div>
+        <?php foreach ($booking as $key => $book) : ?>
+          <tr>
+            <td><?= $key + 1 ?></td>
+            <td><?= htmlspecialchars($book['name']) ?></td>
+            <td><?= htmlspecialchars($book['last_name']) ?></td>
+            <td><?= htmlspecialchars($book['tel']) ?></td>
+            <td><?= $book['created_at'] ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </table>
+      <br>
+      <h2>Количество забронированных мест</h2>
+      <p class="count">0</p>
+      <br>
+      <h2>Заявки на новостную рассылку</h2>
+      <table border="1" style="border: 1px solid red;">
+        <tr>
+          <th>#</th>
+          <th>Email</th>
+          <th>Дата и время</th>
+        </tr>
+        <?php foreach ($newsletter as $key => $letter) : ?>
+          <tr>
+            <td><?= $key + 1 ?></td>
+            <td><?= htmlspecialchars($letter['email']) ?></td>
+            <td><?= $letter['created_at'] ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </table>
+    </div>
   </div>
   <script>
     let i = document.querySelector(".count");
@@ -48,8 +69,8 @@ $messages = $stmt->fetchAll();
     let neme = localStorage.getItem('testName');
     console.log(neme);
     i.textContent = neme
-    
   </script>
 </body>
+
 
 </html>

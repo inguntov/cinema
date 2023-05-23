@@ -1,8 +1,8 @@
 <?php
 require_once "db.php";
 
-if ($_POST['name'] == 'ilya') {
-header("Location: admin.php"); 
+if ($_POST['name'] === "ilya") {
+  header("Location: admin.php"); 
 } 
 else {
   if(!empty($_POST['name']) && !empty($_POST['last_name']) && !empty($_POST['tel']) )
@@ -14,7 +14,16 @@ else {
       $_POST['tel']
       ]);
     }
+  header("Location: film_1.php");
 };
 
-header("Location: film_1.php");
+if (!empty($_POST['email'])) {
+  $stmt = $pdo->prepare("INSERT INTO newsletter(email) VALUES(?)");
+  $stmt->execute([
+    $_POST['email']
+  ]);
+  header("Location: index.html");
+}
+
+
 ?>

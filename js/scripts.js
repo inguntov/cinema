@@ -7,8 +7,6 @@ let cost = 500;
 let totalPrice = 0;
 let pay = document.querySelector(".pay");
 
-let hall = document.querySelectorAll("#placed");
-
 
 schemeSvg.addEventListener("click", (event) => {
   if (!event.target.classList.contains("booked")) {
